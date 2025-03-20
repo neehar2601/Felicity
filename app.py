@@ -170,4 +170,4 @@ def admin_status():
     return jsonify({"logged_in": session.get('admin_logged_in', False)})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host = '0.0.0.0',port = 5000,debug=True)
