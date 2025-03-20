@@ -658,4 +658,138 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Chatbot Functionality
+    const chatbot = document.getElementById('chatbot');
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatbotSend = document.getElementById('chatbotSend');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotBody = document.getElementById('chatbotBody');
+
+    // Toggle chatbot visibility
+    chatbotToggle.addEventListener('click', function() {
+        chatbot.style.display = 'flex';
+        chatbotToggle.style.display = 'none';
+    });
+
+    chatbotClose.addEventListener('click', function() {
+        chatbot.style.display = 'none';
+        chatbotToggle.style.display = 'block';
+    });
+
+    // Function to add message to chatbot
+    function addMessage(sender, text) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'chatbot-message ' + sender;
+        msgDiv.textContent = text;
+        chatbotBody.appendChild(msgDiv);
+        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+    }
+
+    // Simple chatbot reply handling
+    function getChatbotReply(message) {
+        message = message.toLowerCase();
+        if(message.includes('register') || message.includes('registration')) {
+            return "To register, please click the 'Register' link in the event card or use the registration page.";
+        }
+        if(message.includes('event')) {
+            return "You can view our events by scrolling to the Events section.";
+        }
+        return "I'm sorry, I can only help with registration queries. Please check our events for more details.";
+    }
+
+    // Send message handler
+    function handleChatSend() {
+        const userMessage = chatbotInput.value.trim();
+        if(!userMessage) return;
+        addMessage('user', userMessage);
+        chatbotInput.value = '';
+        setTimeout(function() {
+            const reply = getChatbotReply(userMessage);
+            addMessage('bot', reply);
+        }, 500);
+    }
+
+    // Send button or Enter key triggers send
+    chatbotSend.addEventListener('click', handleChatSend);
+    chatbotInput.addEventListener('keypress', function(e) {
+        if(e.key === 'Enter') {
+            handleChatSend();
+        }
+    });
+});
+
+// Chatbot Functionality (clickable options only)
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbot = document.getElementById('chatbot');
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatbotBody = document.getElementById('chatbotBody');
+
+    // Toggle chatbot visibility
+    chatbotToggle.addEventListener('click', function() {
+        chatbot.style.display = 'flex';
+        chatbotToggle.style.display = 'none';
+    });
+
+    chatbotClose.addEventListener('click', function() {
+        chatbot.style.display = 'none';
+        chatbotToggle.style.display = 'block';
+    });
+
+    // Function to add a message to the chatbot
+    function addMessage(sender, text) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'chatbot-message ' + sender;
+        msgDiv.textContent = text;
+        chatbotBody.appendChild(msgDiv);
+        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+    }
+
+    // Event details mapping matching your events.json data
+    const eventDetails = {
+        "athletic meet": {
+            date: "March 29, 2025",
+            registrationLink: "register-athletics.html"
+        },
+        "football tournament": {
+            date: "April 1-3, 2025",
+            registrationLink: "register-football.html"
+        },
+        "badminton championship": {
+            date: "April 2-4, 2025",
+            registrationLink: "register-basketball.html"
+        },
+        "cricket tournament": {
+            date: "March 31 - April 1, 2025",
+            registrationLink: "register-cricket.html"
+        }
+    };
+
+    // Utility function to capitalize each word
+    function capitalize(text) {
+        return text.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+
+    // Function to generate reply for a preset event option
+    function getEventReply(eventKey) {
+        const details = eventDetails[eventKey];
+        if (details) {
+            return `Registration for ${capitalize(eventKey)} is scheduled on ${details.date}. Click here to register: ${details.registrationLink}`;
+        }
+        return "Sorry, no details are available for this event.";
+    }
+
+    // Attach click handlers for preset event options
+    document.querySelectorAll('.chatbot-option').forEach(function(button) {
+        button.addEventListener('click', function() {
+            const eventKey = button.getAttribute('data-event');
+            addMessage('user', capitalize(eventKey));
+            setTimeout(function() {
+                const reply = getEventReply(eventKey);
+                addMessage('bot', reply);
+            }, 500);
+        });
+    });
 });

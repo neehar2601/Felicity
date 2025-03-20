@@ -229,6 +229,25 @@
         </div>
     </div>
 
+    <!-- Chatbot Widget -->
+    <div id="chatbot" class="chatbot">
+        <div id="chatbotHeader" class="chatbot-header">
+            Registration Chatbot
+            <span id="chatbotClose" class="chatbot-close">&times;</span>
+        </div>
+        <div id="chatbotBody" class="chatbot-body">
+            <div class="chatbot-message bot">Hi! Need help with event registration? Choose an event below:</div>
+            <!-- Preset event options -->
+            <div id="eventOptions" class="chatbot-options">
+                <button class="chatbot-option" data-event="athletic meet">Athletic Meet</button>
+                <button class="chatbot-option" data-event="football tournament">Football Tournament</button>
+                <button class="chatbot-option" data-event="badminton championship">Badminton Championship</button>
+                <button class="chatbot-option" data-event="cricket tournament">Cricket Tournament</button>
+            </div>
+        </div>
+    </div>
+    <button id="chatbotToggle" class="chatbot-toggle">Chat</button>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
