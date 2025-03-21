@@ -7,7 +7,7 @@
     {
         "group": "Mavericks",
         "sports": 0,
-        "cultural": 5
+        "cultural": 0
     },
     {
         "group": "Phoenix",
@@ -16,7 +16,7 @@
     },
     {
         "group": "Titans",
-        "sports": 159,
+        "sports": 0,
         "cultural": 0
     }
 ]

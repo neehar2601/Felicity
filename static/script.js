@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
             event_type: "running"
         },
         {
-            name: "Football Tournament",
-            date: "April 1-3, 2025",
+            name: "Foosball Tournament",
+            date: "Will be announced soon",
             description: "Inter-college football competition with teams competing for the championship trophy.",
             category: "sports",
             registrationLink: "register-football.html",
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             name: "Badminton Championship",
-            date: "April 2-4, 2025",
+            date: "April 6, 2025",
             description: "Exciting badminton matches between college teams with knockout rounds.",
             category: "sports",
             registrationLink: "register-basketball.html",
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             name: "Cricket Tournament",
-            date: "March 31 - April 1, 2025",
+            date: "April 1 - April 2, 2025",
             description: "T20 cricket matches between departments and colleges.",
             category: "sports",
             registrationLink: "register-cricket.html",
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         "week2": [
             {
-                day: "April 7, 2025",
+                day: "April 7,2025",
                 events: [
                     { time: "09:00 AM", event: "Art Exhibition - Opening", venue: "Art Gallery" },
                     { time: "11:00 AM", event: "Photography Contest Begins", venue: "Campus-wide" },
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="event-details">
                     <span class="event-category">${getCategoryName(event.category)}</span>
                     <h3>${event.name}</h3>
-                    <p>${event.description}
+                    <p>${event.description}</p>
                     <a href="${event.registrationLink}" class="event-link">Register</a>
                 </div>
             `;

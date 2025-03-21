@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  flask_app:
+    build: .
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./data:/app/data  # Persist the 'data' folder
+    environment:
+      - FLASK_ENV=development  # Enables auto-reload for Flask
+
