@@ -268,6 +268,61 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
  
+    // New function: Load and display points chart
+    function loadPointsChart() {
+        fetch('/api/points')
+            .then(response => response.json())
+            .then(data => {
+                const groups = data.map(item => item.group);
+                const sportsData = data.map(item => item.sports);
+                const culturalData = data.map(item => item.cultural);
+                const totalData = data.map(item => item.total);
+    
+                const ctx = document.getElementById('pointsChart').getContext('2d');
+    
+                // Destroy previous chart instance if one exists
+                if (window.pointsChartInstance) {
+                    window.pointsChartInstance.destroy();
+                }
+    
+                window.pointsChartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: groups,
+                        datasets: [
+                            {
+                                label: 'Sports',
+                                data: sportsData,
+                                backgroundColor: 'rgba(52, 152, 219, 0.6)',
+                            },
+                            {
+                                label: 'Cultural',
+                                data: culturalData,
+                                backgroundColor: 'rgba(231, 76, 60, 0.6)',
+                            },
+                            {
+                                label: 'Total',
+                                data: totalData,
+                                backgroundColor: 'rgba(46, 204, 113, 0.6)',
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                stacked: false
+                            },
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading chart data:', error));
+    }
+ 
     // Points Table
     function loadPointsData(eventType = 'all') {
         // Show loading indicator
@@ -308,6 +363,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     `;
                     tableBody.appendChild(row);
                 });
+                
+                // Update the chart every time points data is loaded
+                loadPointsChart();
             })
             .catch(error => {
                 console.error('Error fetching points data:', error);
