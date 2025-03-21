@@ -1,12 +1,27 @@
+# version: "3.8"
+
+# services:
+#   flask_app:
+#     build: .
+#     ports:
+#       - "5001:5000"
+#     volumes:
+#       - data_volume:/app/data  # Persist the 'data' folder
+#     environment:
+#       - FLASK_ENV=development  # Enables auto-reload for Flask
+
 version: "3.8"
 
 services:
   flask_app:
-    build: .
+    image: neehar2601/felicity:v1  # Use the prebuilt image
     ports:
       - "5001:5000"
     volumes:
-      - ./data:/app/data  # Persist the 'data' folder
+      - data_volume:/app/data  # Use a Docker volume for persistence
     environment:
       - FLASK_ENV=development  # Enables auto-reload for Flask
+
+volumes:
+  data_volume:  # This creates a named volume for persistent data
 
