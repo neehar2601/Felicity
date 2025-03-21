@@ -14,7 +14,7 @@ version: "3.8"
 
 services:
   flask_app:
-    image: neehar2601/felicity:v1  # Use the prebuilt image
+    image: neehar2601/felicitytest:v1  # Use the prebuilt image
     ports:
       - "5001:5000"
     volumes:
