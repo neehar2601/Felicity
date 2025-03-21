@@ -18,5 +18,10 @@
         "group": "Titans",
         "sports": 0,
         "cultural": 0
+    },
+    {
+        "group": "Faculty",
+        "sports": 0,
+        "cultural": 0
     }
 ]
